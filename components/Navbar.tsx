@@ -46,10 +46,13 @@ export default function Navbar({ isLoaded = true }: NavbarProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
+  // Do not render in DOM until loader sequence completes
+  if (!isLoaded) return null;
+
   return (
     <motion.header
       initial={{ opacity: 0 }}
-      animate={{ opacity: isLoaded ? 1 : 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
       className="fixed top-5 left-5 z-50 pointer-events-none"
     >
