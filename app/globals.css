@@ -61,15 +61,207 @@ body {
 
 @keyframes ping-once {
   0% {
-    transform: scale(0.3);
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
     opacity: 1;
+    border-width: 2px;
   }
   100% {
-    transform: scale(3.8);
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
     opacity: 0;
+    border-width: 2px;
   }
 }
 
 .animate-ping-once {
   animation: ping-once 0.85s cubic-bezier(0, 0, 0.2, 1) forwards;
 }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* Water Droplet Impact & Constant Thickness Water Ripple Waves   */
+/* ═══════════════════════════════════════════════════════════════ */
+
+@keyframes water-ripple-1 {
+  0% {
+    width: 8px;
+    height: 8px;
+    opacity: 0.95;
+    border-width: 2px;
+  }
+  60% {
+    opacity: 0.75;
+    border-width: 2px;
+  }
+  100% {
+    width: 1200px;
+    height: 1200px;
+    opacity: 0;
+    border-width: 2px;
+  }
+}
+
+@keyframes water-ripple-2 {
+  0% {
+    width: 8px;
+    height: 8px;
+    opacity: 0.85;
+    border-width: 2px;
+  }
+  65% {
+    opacity: 0.6;
+    border-width: 2px;
+  }
+  100% {
+    width: 1350px;
+    height: 1350px;
+    opacity: 0;
+    border-width: 2px;
+  }
+}
+
+@keyframes water-ripple-3 {
+  0% {
+    width: 8px;
+    height: 8px;
+    opacity: 0.75;
+    border-width: 2px;
+  }
+  70% {
+    opacity: 0.45;
+    border-width: 2px;
+  }
+  100% {
+    width: 1500px;
+    height: 1500px;
+    opacity: 0;
+    border-width: 2px;
+  }
+}
+
+@keyframes water-ripple-4 {
+  0% {
+    width: 8px;
+    height: 8px;
+    opacity: 0.6;
+    border-width: 2px;
+  }
+  75% {
+    opacity: 0.25;
+    border-width: 2px;
+  }
+  100% {
+    width: 1650px;
+    height: 1650px;
+    opacity: 0;
+    border-width: 2px;
+  }
+}
+
+@keyframes water-droplet-plunge {
+  0% {
+    transform: scale(0.65);
+    filter: brightness(2.2);
+  }
+  35% {
+    transform: scale(1.22);
+    filter: brightness(1.6);
+  }
+  65% {
+    transform: scale(0.94);
+    filter: brightness(1.15);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes water-surface-undulate {
+  0% {
+    transform: translateY(20px) scale(0.96);
+  }
+  35% {
+    transform: translateY(-6px) scale(1.015);
+  }
+  65% {
+    transform: translateY(3px) scale(0.995);
+  }
+  85% {
+    transform: translateY(-1px) scale(1.002);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes water-droplet-crown {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  50% {
+    transform: scale(2.6);
+    opacity: 0.7;
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(4.8);
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+
+.water-wave-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 2px !important;
+  box-sizing: border-box;
+  will-change: width, height, opacity;
+}
+
+.water-wave-1 {
+  animation: water-ripple-1 1.4s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+}
+
+.water-wave-2 {
+  animation: water-ripple-2 1.75s cubic-bezier(0.1, 0.8, 0.25, 1) 0.12s forwards;
+}
+
+.water-wave-3 {
+  animation: water-ripple-3 2.1s cubic-bezier(0.1, 0.8, 0.25, 1) 0.26s forwards;
+}
+
+.water-wave-4 {
+  animation: water-ripple-4 2.5s cubic-bezier(0.1, 0.8, 0.25, 1) 0.42s forwards;
+}
+
+.water-droplet-crown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  margin-left: -24px;
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: water-droplet-crown 0.85s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+}
+
+.animate-water-plunge {
+  animation: water-droplet-plunge 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-water-surface {
+  animation: water-surface-undulate 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+

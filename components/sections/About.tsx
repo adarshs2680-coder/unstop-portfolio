@@ -148,28 +148,59 @@ export default function About({ starsAligned = false }: AboutProps) {
         </p>
 
         {/* ─── Vision & Mission Dual Cards ─── */}
+        {/* ─── Vision & Mission Dual Cards (Water Surface Ripple Reveal) ─── */}
         <div id="vision-mission" className="vm-container grid lg:grid-cols-2 gap-8 mb-24">
           {/* Vision Card */}
           <div
             id="vision-card"
-            className={`vm-card relative rounded-3xl border p-8 md:p-10 overflow-hidden shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group hover:border-pink-500/50 ${
+            style={{
+              clipPath: starsAligned
+                ? "circle(220% at var(--rx, 56px) var(--ry, 56px))"
+                : "circle(0% at var(--rx, 56px) var(--ry, 56px))",
+              WebkitClipPath: starsAligned
+                ? "circle(220% at var(--rx, 56px) var(--ry, 56px))"
+                : "circle(0% at var(--rx, 56px) var(--ry, 56px))",
+              transition:
+                "clip-path 1.35s cubic-bezier(0.16, 1, 0.3, 1), -webkit-clip-path 1.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease-out, border-color 0.8s ease-out, box-shadow 0.8s ease-out",
+            }}
+            className={`vm-card relative rounded-3xl border p-8 md:p-10 overflow-hidden shadow-2xl group hover:border-pink-500/50 [--rx:56px] [--ry:56px] md:[--rx:64px] md:[--ry:64px] ${
               starsAligned
-                ? "opacity-100 scale-100 translate-y-0 blur-none border-pink-500/35 bg-gradient-to-br from-pink-950/25 via-[#070208] to-black shadow-[0_12px_50px_-10px_rgba(236,72,153,0.25)] pointer-events-auto"
-                : "opacity-0 scale-[0.93] translate-y-8 blur-[4px] border-pink-500/10 shadow-none pointer-events-none"
+                ? "opacity-100 animate-water-surface border-pink-500/40 bg-gradient-to-br from-pink-950/25 via-[#070208] to-black shadow-[0_12px_60px_-10px_rgba(236,72,153,0.3)] pointer-events-auto"
+                : "opacity-0 border-pink-500/10 shadow-none pointer-events-none"
             }`}
           >
+            {/* ── Water Droplet Concentric Wave Ripples ── */}
+            <div className="absolute top-8 left-8 md:top-10 md:left-10 w-12 h-12 pointer-events-none z-10 flex items-center justify-center">
+              {starsAligned && (
+                <>
+                  <span className="water-droplet-crown bg-pink-400/30" />
+                  <span className="water-wave-ring water-wave-1 border-pink-300" />
+                  <span className="water-wave-ring water-wave-2 border-pink-400/80" />
+                  <span className="water-wave-ring water-wave-3 border-pink-500/60" />
+                  <span className="water-wave-ring water-wave-4 border-rose-400/40" />
+                </>
+              )}
+            </div>
+
+            {/* Water Caustic Light Wave */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-r from-transparent via-pink-400/10 to-transparent pointer-events-none transition-transform duration-1000 ease-out ${
+                starsAligned ? "translate-x-full" : "-translate-x-full"
+              }`}
+            />
+
             {/* Top light beam accent */}
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-400/60 to-transparent pointer-events-none" />
 
             {/* Glow accent */}
             <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-[#ec4899]/15 blur-3xl pointer-events-none group-hover:bg-[#ec4899]/25 transition-all duration-500" />
 
-            <div className="flex items-center gap-3.5 mb-6">
+            <div className="flex items-center gap-3.5 mb-6 relative z-10">
               <div
                 id="vision-star-target"
                 className={`w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-white flex-shrink-0 relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   starsAligned
-                    ? "shadow-[0_0_28px_rgba(236,72,153,0.6)] scale-100"
+                    ? "shadow-[0_0_28px_rgba(236,72,153,0.7)] scale-100 animate-water-plunge"
                     : "shadow-none scale-90"
                 }`}
               >
@@ -183,17 +214,16 @@ export default function About({ starsAligned = false }: AboutProps) {
                   Our Vision
                 </h3>
               </div>
-              
             </div>
-          
-            <p className="text-white/85 text-lg leading-relaxed font-light mb-8">
+
+            <p className="text-white/85 text-lg leading-relaxed font-light mb-8 relative z-10">
               &ldquo;To empower every engineering student at{" "}
               <span className="text-white font-semibold">UCEK</span> to become a{" "}
               <span className="text-pink-300 font-medium">confident, competent, and industry ready</span>{" "}
               professional, equipped to excel in placements and thrive in their future careers.&rdquo;
             </p>
 
-            <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4">
+            <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4 relative z-10">
               <div className="inline-flex items-center gap-2 text-xs text-pink-300 font-medium bg-pink-500/10 border border-pink-500/20 px-3.5 py-1.5 rounded-full">
                 <GraduationCap size={14} />
                 <span>Industry Ready</span>
@@ -208,24 +238,54 @@ export default function About({ starsAligned = false }: AboutProps) {
           {/* Mission Card */}
           <div
             id="mission-card"
-            className={`vm-card relative rounded-3xl border p-8 md:p-10 overflow-hidden shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75 group hover:border-blue-500/50 ${
+            style={{
+              clipPath: starsAligned
+                ? "circle(220% at var(--rx, 56px) var(--ry, 56px))"
+                : "circle(0% at var(--rx, 56px) var(--ry, 56px))",
+              WebkitClipPath: starsAligned
+                ? "circle(220% at var(--rx, 56px) var(--ry, 56px))"
+                : "circle(0% at var(--rx, 56px) var(--ry, 56px))",
+              transition:
+                "clip-path 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, -webkit-clip-path 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, opacity 0.5s ease-out 0.08s, border-color 0.8s ease-out, box-shadow 0.8s ease-out",
+            }}
+            className={`vm-card relative rounded-3xl border p-8 md:p-10 overflow-hidden shadow-2xl group hover:border-blue-500/50 [--rx:56px] [--ry:56px] md:[--rx:64px] md:[--ry:64px] ${
               starsAligned
-                ? "opacity-100 scale-100 translate-y-0 blur-none border-blue-500/35 bg-gradient-to-br from-blue-950/25 via-[#02050e] to-black shadow-[0_12px_50px_-10px_rgba(59,130,246,0.25)] pointer-events-auto"
-                : "opacity-0 scale-[0.93] translate-y-8 blur-[4px] border-blue-500/10 shadow-none pointer-events-none"
+                ? "opacity-100 animate-water-surface border-blue-500/40 bg-gradient-to-br from-blue-950/25 via-[#02050e] to-black shadow-[0_12px_60px_-10px_rgba(59,130,246,0.3)] pointer-events-auto"
+                : "opacity-0 border-blue-500/10 shadow-none pointer-events-none"
             }`}
           >
+            {/* ── Water Droplet Concentric Wave Ripples ── */}
+            <div className="absolute top-8 left-8 md:top-10 md:left-10 w-12 h-12 pointer-events-none z-10 flex items-center justify-center">
+              {starsAligned && (
+                <>
+                  <span className="water-droplet-crown bg-cyan-400/30" />
+                  <span className="water-wave-ring water-wave-1 border-cyan-300" />
+                  <span className="water-wave-ring water-wave-2 border-blue-400/80" />
+                  <span className="water-wave-ring water-wave-3 border-blue-500/60" />
+                  <span className="water-wave-ring water-wave-4 border-indigo-400/40" />
+                </>
+              )}
+            </div>
+
+            {/* Water Caustic Light Wave */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent pointer-events-none transition-transform duration-1000 ease-out ${
+                starsAligned ? "translate-x-full" : "-translate-x-full"
+              }`}
+            />
+
             {/* Top light beam accent */}
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent pointer-events-none" />
 
             {/* Glow accent */}
             <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-blue-500/15 blur-3xl pointer-events-none group-hover:bg-blue-500/25 transition-all duration-500" />
 
-            <div className="flex items-center gap-3.5 mb-6">
+            <div className="flex items-center gap-3.5 mb-6 relative z-10">
               <div
                 id="mission-star-target"
-                className={`w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white flex-shrink-0 relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75 ${
+                className={`w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white flex-shrink-0 relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   starsAligned
-                    ? "shadow-[0_0_28px_rgba(59,130,246,0.6)] scale-100"
+                    ? "shadow-[0_0_28px_rgba(59,130,246,0.7)] scale-100 animate-water-plunge"
                     : "shadow-none scale-90"
                 }`}
               >
@@ -241,19 +301,19 @@ export default function About({ starsAligned = false }: AboutProps) {
               </div>
             </div>
 
-            <p className="text-white/80 text-base md:text-lg leading-relaxed font-light mb-4">
+            <p className="text-white/80 text-base md:text-lg leading-relaxed font-light mb-4 relative z-10">
               At <span className="text-white font-semibold">Unstop Igniters UCEK</span>, our mission is to
               bridge the gap between academic learning and industry expectations by preparing
               students for successful placements.
             </p>
 
-            <p className="text-white/70 text-sm md:text-base leading-relaxed font-light mb-8">
+            <p className="text-white/70 text-sm md:text-base leading-relaxed font-light mb-8 relative z-10">
               We strive to enhance employability through{" "}
               <span className="text-blue-300 font-normal">structured placement training, soft skill development, aptitude preparation, resume building, interview guidance, and industry exposure</span>.
               Through collaborative learning and continuous skill development, we aim to help students unlock their potential and confidently navigate the transition from campus to career.
             </p>
 
-            <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4">
+            <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4 relative z-10">
               <div className="inline-flex items-center gap-2 text-xs text-blue-300 font-medium bg-blue-500/10 border border-blue-500/20 px-3.5 py-1.5 rounded-full">
                 <Briefcase size={14} />
                 <span>Employability First</span>

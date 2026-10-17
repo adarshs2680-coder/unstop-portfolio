@@ -373,7 +373,7 @@ export default function HelicalStars({ isLoaded, onAlignChange }: HelicalStarsPr
         {/* Arrival Shockwave Ring */}
         <div
           ref={shockwave1Ref}
-          className="absolute w-16 h-16 rounded-full border-2 border-pink-400/80 pointer-events-none opacity-0 scale-0 transition-transform duration-700"
+          className="absolute w-16 h-16 rounded-full border border-pink-400/60 pointer-events-none opacity-0 scale-0 transition-transform duration-700"
         />
       </div>
 
@@ -408,7 +408,7 @@ export default function HelicalStars({ isLoaded, onAlignChange }: HelicalStarsPr
         {/* Arrival Shockwave Ring */}
         <div
           ref={shockwave2Ref}
-          className="absolute w-16 h-16 rounded-full border-2 border-cyan-400/80 pointer-events-none opacity-0 scale-0 transition-transform duration-700"
+          className="absolute w-16 h-16 rounded-full border border-cyan-400/60 pointer-events-none opacity-0 scale-0 transition-transform duration-700"
         />
       </div>
     </div>
