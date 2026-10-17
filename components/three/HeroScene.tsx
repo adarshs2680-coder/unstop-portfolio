@@ -85,6 +85,7 @@ function ParticleFieldB() {
 /* ------------------------------------------------------------------ */
 /* Wireframe floating geometries                                       */
 /* ------------------------------------------------------------------ */
+/*
 function FloatingShapes() {
   const torus = useRef<THREE.Mesh>(null!);
   const ico = useRef<THREE.Mesh>(null!);
@@ -144,7 +145,7 @@ function FloatingShapes() {
     </>
   );
 }
-
+*/
 /* ------------------------------------------------------------------ */
 /* Export                                                               */
 /* ------------------------------------------------------------------ */
@@ -160,7 +161,7 @@ export default function HeroScene() {
       <pointLight position={[-8, -8, -8]} intensity={1} color="#2563eb" />
       <ParticleField />
       <ParticleFieldB />
-      <FloatingShapes />
+     {/* <FloatingShapes /> */}
     </Canvas>
   );
 }

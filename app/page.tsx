@@ -9,9 +9,11 @@ import Members from "@/components/sections/Members";
 import JoinCTA from "@/components/sections/JoinCTA";
 import Footer from "@/components/Footer";
 import IntroLoader from "@/components/IntroLoader";
+import HelicalStars from "@/components/HelicalStars";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [starsAligned, setStarsAligned] = useState(false);
   
   const handleIntroComplete = useCallback(() => {
     setIsLoaded(true);
@@ -21,8 +23,9 @@ export default function Home() {
     <main className="bg-[#050505] min-h-screen">
       <IntroLoader onComplete={handleIntroComplete} />
       <Navbar isLoaded={isLoaded} />
+      <HelicalStars isLoaded={isLoaded} onAlignChange={setStarsAligned} />
       <Hero isLoaded={isLoaded} />
-      <About />
+      <About starsAligned={starsAligned} />
       <Projects />
       <Members />
       <JoinCTA />

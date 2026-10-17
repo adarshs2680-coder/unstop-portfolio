@@ -38,7 +38,11 @@ function SectionTitle({ text, className }: { text: string; className?: string })
   );
 }
 
-export default function About() {
+interface AboutProps {
+  starsAligned?: boolean;
+}
+
+export default function About({ starsAligned = false }: AboutProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -75,22 +79,7 @@ export default function About() {
         }
       );
 
-      // ── Vision & Mission cards reveal ──
-      gsap.fromTo(
-        ".about-section .vm-card",
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".about-section .vm-container",
-            start: "top 80%",
-          },
-        }
-      );
+      // ── Vision & Mission cards reveal is driven exclusively when the stars align! ──
 
       // ── Pillars stagger ──
       gsap.fromTo(
@@ -134,7 +123,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="about-section relative py-32 px-6 overflow-hidden"
+      className="about-section relative pt-24 pb-10 px-6 overflow-hidden"
     >
       {/* Background gradients */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#09050e] to-[#050505] pointer-events-none" />
@@ -161,12 +150,29 @@ export default function About() {
         {/* ─── Vision & Mission Dual Cards ─── */}
         <div id="vision-mission" className="vm-container grid lg:grid-cols-2 gap-8 mb-24">
           {/* Vision Card */}
-          <div className="vm-card relative rounded-3xl border border-pink-500/25 bg-gradient-to-br from-pink-950/20 via-black to-pink-950/10 p-8 md:p-10 overflow-hidden shadow-2xl shadow-pink-950/30 group hover:border-pink-500/40 transition-all duration-500">
+          <div
+            id="vision-card"
+            className={`vm-card relative rounded-3xl border p-8 md:p-10 overflow-hidden shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group hover:border-pink-500/50 ${
+              starsAligned
+                ? "opacity-100 scale-100 translate-y-0 blur-none border-pink-500/35 bg-gradient-to-br from-pink-950/25 via-[#070208] to-black shadow-[0_12px_50px_-10px_rgba(236,72,153,0.25)] pointer-events-auto"
+                : "opacity-0 scale-[0.93] translate-y-8 blur-[4px] border-pink-500/10 shadow-none pointer-events-none"
+            }`}
+          >
+            {/* Top light beam accent */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-400/60 to-transparent pointer-events-none" />
+
             {/* Glow accent */}
             <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-[#ec4899]/15 blur-3xl pointer-events-none group-hover:bg-[#ec4899]/25 transition-all duration-500" />
 
             <div className="flex items-center gap-3.5 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-white shadow-lg shadow-pink-500/30 flex-shrink-0">
+              <div
+                id="vision-star-target"
+                className={`w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-white flex-shrink-0 relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  starsAligned
+                    ? "shadow-[0_0_28px_rgba(236,72,153,0.6)] scale-100"
+                    : "shadow-none scale-90"
+                }`}
+              >
                 <Target size={24} />
               </div>
               <div>
@@ -177,8 +183,9 @@ export default function About() {
                   Our Vision
                 </h3>
               </div>
+              
             </div>
-
+          
             <p className="text-white/85 text-lg leading-relaxed font-light mb-8">
               &ldquo;To empower every engineering student at{" "}
               <span className="text-white font-semibold">UCEK</span> to become a{" "}
@@ -199,12 +206,29 @@ export default function About() {
           </div>
 
           {/* Mission Card */}
-          <div className="vm-card relative rounded-3xl border border-blue-500/25 bg-gradient-to-br from-blue-950/20 via-black to-blue-950/10 p-8 md:p-10 overflow-hidden shadow-2xl shadow-blue-950/30 group hover:border-blue-500/40 transition-all duration-500">
+          <div
+            id="mission-card"
+            className={`vm-card relative rounded-3xl border p-8 md:p-10 overflow-hidden shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75 group hover:border-blue-500/50 ${
+              starsAligned
+                ? "opacity-100 scale-100 translate-y-0 blur-none border-blue-500/35 bg-gradient-to-br from-blue-950/25 via-[#02050e] to-black shadow-[0_12px_50px_-10px_rgba(59,130,246,0.25)] pointer-events-auto"
+                : "opacity-0 scale-[0.93] translate-y-8 blur-[4px] border-blue-500/10 shadow-none pointer-events-none"
+            }`}
+          >
+            {/* Top light beam accent */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent pointer-events-none" />
+
             {/* Glow accent */}
             <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-blue-500/15 blur-3xl pointer-events-none group-hover:bg-blue-500/25 transition-all duration-500" />
 
             <div className="flex items-center gap-3.5 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30 flex-shrink-0">
+              <div
+                id="mission-star-target"
+                className={`w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white flex-shrink-0 relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75 ${
+                  starsAligned
+                    ? "shadow-[0_0_28px_rgba(59,130,246,0.6)] scale-100"
+                    : "shadow-none scale-90"
+                }`}
+              >
                 <Compass size={24} />
               </div>
               <div>
@@ -241,8 +265,8 @@ export default function About() {
             </div>
           </div>
         </div>
-
-        {/* ─── Core Placement Pillars ─── */}
+        {/*
+        {/* ─── Core Placement Pillars ─── 
         <div className="mb-24">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
@@ -281,8 +305,8 @@ export default function About() {
             ))}
           </div>
         </div>
-
-        {/* ─── Statistics & Impact ─── */}
+         
+        {/* ─── Statistics & Impact ─── 
         <div className="stats-grid grid grid-cols-2 lg:grid-cols-4 gap-5">
           {stats.map((s) => (
             <div
@@ -298,6 +322,7 @@ export default function About() {
             </div>
           ))}
         </div>
+         */}
       </div>
     </section>
   );

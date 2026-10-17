@@ -71,7 +71,7 @@ export default function Projects() {
     <section
       id="initiatives"
       ref={sectionRef}
-      className="projects-section relative py-36 px-6"
+      className="projects-section relative pt-10 pb-28 px-6"
     >
       <div id="projects" className="absolute -top-10" />
       {/* Subtle bg glow */}
@@ -87,7 +87,7 @@ export default function Projects() {
         </div>
 
         {/* Title */}
-        <div className="overflow-hidden mb-20">
+        <div className="overflow-hidden mb-12">
           <div className="split-title flex flex-wrap">
             {"OUR INITIATIVES".split("").map((ch, i) => (
               <span
