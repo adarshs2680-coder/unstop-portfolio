@@ -173,6 +173,11 @@ export default function About({ starsAligned = false }: AboutProps) {
             <div className="absolute top-8 left-8 md:top-10 md:left-10 w-12 h-12 pointer-events-none z-10 flex items-center justify-center">
               {starsAligned && (
                 <>
+                  <span className="water-droplet-crown bg-pink-400/20" />
+                  <span className="water-wave-ring water-wave-1 border-pink-300/80" />
+                  <span className="water-wave-ring water-wave-2 border-pink-400/60" />
+                  <span className="water-wave-ring water-wave-3 border-pink-500/40" />
+                  <span className="water-wave-ring water-wave-4 border-rose-400/25" />
                   <span className="water-droplet-crown bg-pink-400/30" />
                   <span className="water-wave-ring water-wave-1 border-pink-300" />
                   <span className="water-wave-ring water-wave-2 border-pink-400/80" />
@@ -258,6 +263,11 @@ export default function About({ starsAligned = false }: AboutProps) {
             <div className="absolute top-8 left-8 md:top-10 md:left-10 w-12 h-12 pointer-events-none z-10 flex items-center justify-center">
               {starsAligned && (
                 <>
+                  <span className="water-droplet-crown bg-cyan-400/20" />
+                  <span className="water-wave-ring water-wave-1 border-cyan-300/80" />
+                  <span className="water-wave-ring water-wave-2 border-blue-400/60" />
+                  <span className="water-wave-ring water-wave-3 border-blue-500/40" />
+                  <span className="water-wave-ring water-wave-4 border-indigo-400/25" />
                   <span className="water-droplet-crown bg-cyan-400/30" />
                   <span className="water-wave-ring water-wave-1 border-cyan-300" />
                   <span className="water-wave-ring water-wave-2 border-blue-400/80" />
